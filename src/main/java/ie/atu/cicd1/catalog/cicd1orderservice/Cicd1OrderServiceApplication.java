@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Cicd1OrderServiceApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(Cicd1OrderServiceApplication.class, args);
     }
 
