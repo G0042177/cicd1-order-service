@@ -27,3 +27,5 @@ Separate open pull requests
  
 Week 2: add JPA + H2 
 Week 3: add Order -> Catalog communication with OpenFeign 
+## SQL and Normalisation Lab 
+Final db<>fiddle session:
