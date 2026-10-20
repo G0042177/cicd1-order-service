@@ -29,3 +29,4 @@ Week 2: add JPA + H2
 Week 3: add Order -> Catalog communication with OpenFeign 
 ## SQL and Normalisation Lab 
 Final db<>fiddle session:
+https://dbfiddle.uk/thZKs4T2
