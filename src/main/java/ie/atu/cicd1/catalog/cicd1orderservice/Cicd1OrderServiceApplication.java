@@ -2,7 +2,9 @@ package ie.atu.cicd1.catalog.cicd1orderservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
+@EnableFeignClients
 @SpringBootApplication
 public class Cicd1OrderServiceApplication {
 
