@@ -1,22 +1,46 @@
 package ie.atu.cicd1.catalog.cicd1orderservice.service;
 
+import ie.atu.cicd1.catalog.cicd1orderservice.client.CatalogClient;
+import ie.atu.cicd1.catalog.cicd1orderservice.dto.ProductResponse;
 import ie.atu.cicd1.catalog.cicd1orderservice.model.PurchaseOrder;
+import ie.atu.cicd1.catalog.cicd1orderservice.repository.PurchaseOrderRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 
 @Service
 public class PurchaseOrderService {
-    private final List<PurchaseOrder> orders = new ArrayList<>();
-    private long nextId = 1;
+    private final PurchaseOrderRepository repository;
+    private final CatalogClient catalogClient;
 
-    public List<PurchaseOrder> getAll(){
-        return orders;
+    public PurchaseOrderService(
+            PurchaseOrderRepository repository,
+            CatalogClient catalogClient) {
+        this.repository = repository;
+        this.catalogClient = catalogClient;
     }
-    public PurchaseOrder create(PurchaseOrder order){
-        order.setId(nextId++);
-        orders.add(order);
-        return order;
+
+    public List<PurchaseOrder> getAll() {
+        return repository.findAll();
+    }
+
+    public PurchaseOrder create(PurchaseOrder order) {
+        order.setId(null);
+        return repository.save(order);
+    }
+
+    public ProductResponse testCatalogConnection(Long productId) {
+        return catalogClient.getProductById(productId);
+    }
+
+    public ProductResponse getProductForOrder(Long orderId) {
+        PurchaseOrder order = repository.findById(orderId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Order not found"));
+
+        return catalogClient.getProductById(order.getProductId());
     }
 }
