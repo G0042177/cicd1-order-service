@@ -36,6 +36,8 @@ Lab 7
 2. An image is the read-only packaged blueprint; a container is a runnable instance with its own writable layer.
 3. It publishes host port 8082 to container port 8082. EXPOSE only documents the container port.
 4. Inside Order’s container, localhost refers to Order itself. Catalog needs a reachable service address.
-5. The named volume outlives the container and keeps the file-backed H2 data. In-memory data disappears when the process stops.
+5. The named volume outlives the container and keeps the file-backed H2 data. In-memory data disappears when the process stops. 
 
-![img.png](img.png)
+    Catalog product retrieved: Product ID 1 — Lab 7 Compose persistence test
+
+![Catalog and Order Docker images](images/docker-images.png)
